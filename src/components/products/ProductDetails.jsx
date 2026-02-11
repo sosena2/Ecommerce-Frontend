@@ -1,4 +1,5 @@
 import { Star, Check, ShoppingCart } from 'lucide-react';
+import Button from '../ui/Button';
 
 const ProductDetails = ({ product }) => {
   const renderStars = (rating) =>
@@ -77,13 +78,19 @@ const ProductDetails = ({ product }) => {
 
       {/* Static Button (no logic yet) */}
       <div className="grid gap-3 sm:grid-cols-[1.4fr_1fr]">
-        <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+        <Button
+          className="gap-2 rounded-xl px-6 py-3 text-sm"
+          variant="primary"
+        >
           <ShoppingCart className="h-5 w-5" />
           Add to Cart
-        </button>
-        <button className="w-full rounded-xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-gray-50">
+        </Button>
+        <Button
+          className="rounded-xl px-6 py-3 text-sm"
+          variant="outline"
+        >
           View Cart
-        </button>
+        </Button>
       </div>
     </div>
   );

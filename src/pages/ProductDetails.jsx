@@ -1,10 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
-import {mockProducts} from '../data/products';
+import { mockProducts } from '../data/products';
 import ProductDetails from '../components/products/ProductDetails';
+import Card from '../components/ui/Card';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const product = mockProducts.find((p) => p.id === id);
+  const product = mockProducts.find((p) => String(p.id) === id);
 
   if (!product) {
     return (
@@ -22,13 +23,13 @@ const ProductDetailsPage = () => {
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
 
         {/* Image */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <Card className="rounded-2xl p-6" padding={false}>
           <img
-            src={mockProducts.image}
-            alt={mockProducts.name}
+            src={product.image}
+            alt={product.name}
             className="h-[420px] w-full rounded-xl object-contain"
           />
-        </div>
+        </Card>
 
         {/* Details Component */}
         <ProductDetails product={product} />

@@ -3,8 +3,11 @@ import { Star } from 'lucide-react';
 
 const ProductCard = ({ product }) => {
   return (
-    <Link to={`/product/${product._id}`} className="block group">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition duration-300 h-full">
+    <Link
+      to={`/products/${product._id ?? product.id}`}
+      className="block group"
+    >
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg   transition duration-300 h-full">
 
         {/* Image */}
         <div className="h-48 bg-gray-100 overflow-hidden">

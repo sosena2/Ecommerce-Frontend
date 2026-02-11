@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { mockProducts } from '../data/products';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
 
 const Home = () => {
   return (
@@ -15,13 +17,10 @@ const Home = () => {
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Shop quality products at affordable prices. Simple, fast, and reliable shopping experience.
           </p>
-          <Link
-            to="/products"
-            className="inline-flex items-center px-8 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100"
-          >
+          <Button as={Link} to="/products" className="px-8 py-3" variant="outline">
             Shop Now
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+          </Button>
         </div>
       </section>
 
@@ -42,10 +41,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {mockProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-lg shadow-md p-4"
-              >
+              <Card key={product.id} className="rounded-lg p-4" padding={false}>
                 <img
                   src={product.image}
                   alt={product.name}
@@ -63,7 +59,7 @@ const Home = () => {
                 >
                   View Details
                 </Link>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
