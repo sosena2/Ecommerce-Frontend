@@ -1,9 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
-import { products } from '../data/products';
+import {mockProducts} from '../data/products';
+import ProductDetails from '../components/products/ProductDetails';
 
-const ProductDetails = () => {
+const ProductDetailsPage = () => {
   const { id } = useParams();
-  const product = products.find((p) => p.id === id);
+  const product = mockProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
@@ -17,23 +18,24 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full max-w-md mb-6"
-      />
+    <div className="container mx-auto px-4 py-10">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
 
-      <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-      <p className="text-xl text-gray-700 mb-4">${product.price}</p>
+        {/* Image */}
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <img
+            src={mockProducts.image}
+            alt={mockProducts.name}
+            className="h-[420px] w-full rounded-xl object-contain"
+          />
+        </div>
 
-      <p className="text-gray-600 mb-6">{product.description}</p>
+        {/* Details Component */}
+        <ProductDetails product={product} />
 
-      <button className="px-6 py-2 bg-black text-white rounded">
-        Add to Cart
-      </button>
+      </div>
     </div>
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsPage;

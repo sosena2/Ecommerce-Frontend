@@ -1,44 +1,18 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-
-const mockProducts = [
-  {
-    id: 1,
-    name: 'Wireless Headphones',
-    price: 120,
-    image: 'https://via.placeholder.com/300',
-  },
-  {
-    id: 2,
-    name: 'Smart Watch',
-    price: 90,
-    image: 'https://via.placeholder.com/300',
-  },
-  {
-    id: 3,
-    name: 'Bluetooth Speaker',
-    price: 60,
-    image: 'https://via.placeholder.com/300',
-  },
-  {
-    id: 4,
-    name: 'Gaming Mouse',
-    price: 45,
-    image: 'https://via.placeholder.com/300',
-  },
-];
+import { mockProducts } from '../data/products';
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
+      <section className="bg-blue-600 from-primary-600 to-primary-800 text-white">
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Discover Amazing Products
           </h1>
-          <p className="text-xl mb-8 max-w-2xl">
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
             Shop quality products at affordable prices. Simple, fast, and reliable shopping experience.
           </p>
           <Link
