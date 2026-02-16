@@ -46,20 +46,21 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-lg w-full">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
-              <LogIn className="h-6 w-6 text-white" />
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg">
+              <LogIn className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
-          <p className="mt-2 text-gray-600">Sign in to your account</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h2>
+          <p className="text-lg text-gray-600">Sign in to your account to continue</p>
         </div>
+        
         {/* Form */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-10">
           {error && <Alert type="error" message={error} className="mb-6" />}
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -72,7 +73,8 @@ const LoginPage = () => {
               required
               leftIcon={<Mail className="h-5 w-5 text-gray-400" />}
               placeholder="you@example.com"
-              className='text-gray-500'
+              className="text-gray-500"
+              labelClassName="text-base font-medium text-gray-700 mb-1"
             />
 
             <Input
@@ -84,9 +86,11 @@ const LoginPage = () => {
               required
               leftIcon={<Lock className="h-5 w-5 text-gray-400" />}
               placeholder="Enter your password"
-              className='text-gray-500'
+              className="text-gray-500"
+              labelClassName="text-base font-medium text-gray-700 mb-1"
             />
-            <div className="flex items-center justify-between">
+            
+            <div className="flex items-center justify-between pt-2">
               <div className="flex items-center">
                 <input
                   id="remember-me"
@@ -94,7 +98,7 @@ const LoginPage = () => {
                   type="checkbox"
                   className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                   Remember me
                 </label>
               </div>
@@ -103,25 +107,26 @@ const LoginPage = () => {
                 Forgot password?
               </Link>
             </div>
+            
             <Button
               type="submit"
               loading={loading}
-              className="w-full"
+              className="w-full py-3 text-base"
               size="lg"
             >
               Sign In
             </Button>
           </form>
           
-        {/* Sign Up Link */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
-              Sign up
-            </Link>
-          </p>
-        </div>
+          {/* Sign Up Link */}
+          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+            <p className="text-gray-600 text-base">
+              Don't have an account?{' '}
+              <Link to="/register" className="font-semibold text-primary-600 hover:text-primary-500 underline underline-offset-2">
+                Sign up for free
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

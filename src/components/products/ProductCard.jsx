@@ -12,9 +12,12 @@ const ProductCard = ({ product }) => {
         {/* Image */}
         <div className="h-48 bg-gray-100 overflow-hidden">
           <img
-            src={product.image}
-            alt={product.name}
+            src={product.image || product.imageUrl}
+            alt={product.name || product.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            onError={(e) => {
+              e.currentTarget.src = 'https://via.placeholder.com/400x300?text=No+Image';
+            }}
           />
         </div>
 

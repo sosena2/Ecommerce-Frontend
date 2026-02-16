@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X, Search, LogOut, ChevronDown } from 'lucide-react';
+import { ShoppingCart, User, Menu, X, Search } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { cartCount } = useCart();
+
+  const displayName = user?.name || user?.username || user?.email || 'Account';
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -27,15 +33,11 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-600 hover:text-primary-600 transition-colors">
-              Home
-            </Link>
+            
             <Link to="/products" className="text-gray-600 hover:text-primary-600 transition-colors">
               Products
             </Link>
-            <Link to="/categories" className="text-gray-600 hover:text-primary-600 transition-colors">
-              Categories
-            </Link>
+            
           </nav>
 
           {/* Search Bar */}
@@ -56,15 +58,21 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <Link to="/cart" className="relative p-2">
               <ShoppingCart className="h-6 w-6 text-gray-700" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs font-bold text-white bg-primary-600 rounded-full">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* Account */}
             <Link
-              to="/account"
-              className="hidden md:inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-100"
+              to="/profile"
+              className="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-gray-800 bg-white hover:bg-gray-50"
+              title={displayName}
             >
               <User className="h-4 w-4 mr-2" />
-              Account
+              <span className="max-w-[140px] truncate">{displayName}</span>
             </Link>
 
             {/* Mobile Menu Button */}
@@ -115,11 +123,11 @@ const Header = () => {
               Categories
             </Link>
             <Link
-              to="/account"
+              to="/profile"
               className="block px-4 py-2 hover:bg-gray-100 rounded-lg"
               onClick={() => setIsMenuOpen(false)}
             >
-              Account
+              {displayName}
             </Link>
             </div>
           </div>
